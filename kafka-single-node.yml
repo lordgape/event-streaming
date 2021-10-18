@@ -10,6 +10,10 @@ services:
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
     container_name: zookeeper
+    networks:
+      default:
+        aliases:
+          - zookeeper.kafka.local
 
 #Kafka Service
   kafka:
@@ -28,7 +32,14 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
       
     container_name: kafka-broker
+    networks:
+      default:
+        aliases:
+          - broker.kafka.local
     
     depends_on:
       - "zookeeper"
+
+  
+
     
